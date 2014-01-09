@@ -1,0 +1,13 @@
+_static:
+    pattern:  /static/{page}
+    defaults: { _controller: ChecklistiChecklistBundle:Static:index, page: index }
+    requirements:
+        _method:  GET
+
+_checklist:
+    pattern:  /checklist
+    defaults: { _controller: ChecklistiChecklistBundle:Checklist:index}
+
+_checklist_new:
+    pattern:  /checklist/new
+    defaults: { _controller: ChecklistiChecklistBundle:Checklist:new}
