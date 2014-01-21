@@ -1,4 +1,3 @@
-app/cache/dev/*
-app/cache/prod/*
+app/cache
 app/logs/*.log
 app/config/*.yml

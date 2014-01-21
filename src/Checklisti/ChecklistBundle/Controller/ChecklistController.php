@@ -32,8 +32,18 @@ class ChecklistController extends Controller
       $form->handleRequest($request);
 
       if ($form->isValid()) {
-        
-        //Do something
+        //Do something.
+
+        //Persist to database:
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($form->getData());
+        $em->flush();
+
+        //Setting flash message:
+        $request->getSession()->getFlashBag()->add('notice', 'Congratulations, your action succeeded!');
+
+        //How about a redirect?
+        return $this->redirect($this->generateUrl('_checklist'));
       }
 
       return $this->render('ChecklistiChecklistBundle:Checklist:new.html.twig', array(
