@@ -33,7 +33,7 @@ class ChecklistController extends Controller
 
       if ($form->isValid()) {
         //Do something.
-
+\Common\Tools::debug($form->getData(),1);
         //Persist to database:
         $em = $this->getDoctrine()->getManager();
         $em->persist($form->getData());
