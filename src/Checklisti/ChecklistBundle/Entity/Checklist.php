@@ -4,8 +4,8 @@ namespace Checklisti\ChecklistBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
  * @ORM\Table(name="checklist")
+ * @ORM\Entity
  */
 
 class Checklist
@@ -26,6 +26,7 @@ class Checklist
    * @ORM\Column(type="text")
    */
   protected $description;
+
 
   /**
    * Get id
