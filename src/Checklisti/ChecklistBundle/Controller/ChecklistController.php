@@ -10,42 +10,47 @@ class ChecklistController extends Controller
 {
     public function indexAction()
     {
-        /*
-         * The action's view can be rendered using render() method
-         * or @Template annotation as demonstrated in DemoController.
-         *
-         */
-        return $this->render('ChecklistiChecklistBundle:Checklist:index.html.twig');
+        $results = $this->getDoctrine()->getRepository('ChecklistiChecklistBundle:Checklist')->findAll();
+
+        return $this->render('ChecklistiChecklistBundle:Checklist:index.html.twig', array(
+            'results' => $results
+        ));
     }
 
-    public function newAction(Request $request)
+    public function editAction(Request $request, $id)
     {
-      $checklist = new Checklist();
-      $checklist->setTitle('Sample Title');
+        $checklist = new Checklist();
+        $checklist->setTitle('New Checklist '.date('m/d/Y'));
 
-      $form = $this->createFormBuilder($checklist)
-        ->add('title', 'text', array('label' => 'My Title'))
-        ->add('description', 'textarea', array('required' => false, 'label' => 'My Description'))
-        ->add('save', 'submit')
-        ->getForm();
+        if ($id) {
+            if ($result = $this->getDoctrine()->getRepository('ChecklistiChecklistBundle:Checklist')->findOneById($id)) {
+                $checklist = $result;
+            }
+        }
 
-      $form->handleRequest($request);
+        $form = $this->createFormBuilder($checklist)
+            ->add('title', 'text', array('label' => 'My Title'))
+            ->add('description', 'textarea', array('required' => false, 'label' => 'My Description'))
+            ->add('save', 'submit')
+            ->getForm();
 
-      if ($form->isValid()) {
-        //Persist to database:
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($form->getData());
-        $em->flush();
+        $form->handleRequest($request);
 
-        //Setting flash message:
-        $request->getSession()->getFlashBag()->add('notice', 'Congratulations, your action succeeded!');
+        if ($form->isValid()) {
+            //Persist to database:
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($form->getData());
+            $em->flush();
 
-        //How about a redirect?
-        return $this->redirect($this->generateUrl('_checklist'));
-      }
+            //Set the flash message:
+            $request->getSession()->getFlashBag()->add('notice', 'Checklist saved.');
 
-      return $this->render('ChecklistiChecklistBundle:Checklist:new.html.twig', array(
-        'form' => $form->createView()
-      ));
+            //How about a redirect?
+            return $this->redirect($this->generateUrl('_checklist_edit', array('id' => $form->getData()->getId())));
+        }
+
+        return $this->render('ChecklistiChecklistBundle:Checklist:edit.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 }

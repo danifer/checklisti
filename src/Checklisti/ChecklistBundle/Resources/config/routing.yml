@@ -10,4 +10,8 @@ _checklist:
 
 _checklist_new:
     pattern:  /checklist/new
-    defaults: { _controller: ChecklistiChecklistBundle:Checklist:new}
+    defaults: { _controller: ChecklistiChecklistBundle:Checklist:edit, id: null}
+
+_checklist_edit:
+    pattern:  /checklist/edit/{id}
+    defaults: { _controller: ChecklistiChecklistBundle:Checklist:edit}
