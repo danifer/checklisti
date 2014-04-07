@@ -1,21 +1,27 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
     <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>{% block title %}Checklisti{% endblock %} - Checklisti</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width">
+        <title>{% block title %}{{ title }}{{ tagline }}{% endblock %} - {{ sitename }}</title>
 
-      {% block meta_description %}<meta name="description" content="">{% endblock %}
-      {% block meta_keywords %}<meta name="keywords" content="">{% endblock %}
-      {% block meta_author %}<meta name="author" content="">{% endblock %}
+        {% block meta_description %}<meta name="description" content="{{ description }}">{% endblock %}
+        {% block meta_keywords %}<meta name="keywords" content="{{ keywords }}">{% endblock %}
+        {% block meta_author %}<meta name="author" content="{{ sitename }}">{% endblock %}
 
-      {% block stylesheets %}{% endblock %}
-      <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block stylesheets %}{% endblock %}
+            <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block javascripts_head %}{% endblock %}
     </head>
     <body>
-      {% block body %}{% endblock %}
-      {% block javascripts %}{% endblock %}
+        {% block body %}{% endblock %}
+        {% block javascripts_end %}{% endblock %}
     </body>
 </html>
 

@@ -1,12 +1,37 @@
 {% extends 'ChecklistiChecklistBundle::layout.html.twig' %}
 
-{% block title %}About{% endblock %}
-
-{% block content_header '' %}
-
 {% block content %}
-    <h1 class="title">Default static page</h1>
-
-    <p>This is the defauilt static page</p>
-
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h2 id="slogan"></h2>
+                <h1>{{sitename}}</h1>
+                <hr id="hr">
+                <h2 id="slogan"><i class="icon-ok"></i> {{tagline}}</h2>
+                <hr id="hr2">
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="flash-message">
+                        <em>Notice</em>: {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                <div class="main col-centered span6">
+                    <div class="row">
+                        <div class="span6">
+                            <h2 id="">WELCOME</h2>
+                            <fieldset>
+                                <label class="checkbox"><input type="checkbox" id="" value="option69"><strong>Contrast. </strong>There is adequate contrast between the text and background. Check with e.g. <a href="http://www.checkmycolours.com/">www.checkmycolours.com</a></label>
+                                <label class="checkbox"><input type="checkbox" id="" value="option72"><strong>Content is scannable.</strong> There are short paragraphs, descriptive headings, lists and images. Visual content is used when appropriate, instead of large amounts of text.</label>
+                                <label class="checkbox"><input type="checkbox" id="" value="option73"><strong>Content is written with common language</strong> that users easily understand. Check with e.g.: <a href="http://www.read-able.com/">www.read-able.com/</a></label>
+                                <label class="checkbox"><input type="checkbox" id="" value="option74"><strong>Contact and company information is clearly displayed.</strong> Clicking the contact link <a href="http://www.problogger.net/archives/2008/12/06/10-reasons-to-avoid-mailto-links/">doesn't automatically open</a> a mail application.</label>
+                                <label class="checkbox"><input type="checkbox" id="" value="option76"><strong>Content is useful and up-to-date</strong>, providing answers to the most common questions asked by users. There are no long instructions or "welcome to our website" text.</label>
+                                <label class="checkbox"><input type="checkbox" id="" value="option82"><strong>Use of uppercase letters in prose text is avoided.</strong> Uppercase is used only for formatting.</label>
+                            </fieldset>
+                        </div><!--end of span6-->
+                    </div> <!-- end of row -->
+                </div>  
+            </div> <!-- end span12 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
 {% endblock %}
+
+

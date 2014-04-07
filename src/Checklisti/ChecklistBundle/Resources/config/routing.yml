@@ -1,3 +1,9 @@
+_home:
+    pattern:  /
+    defaults: { _controller: ChecklistiChecklistBundle:Static:index, page: index }
+    requirements:
+        _method:  GET
+
 _static:
     pattern:  /static/{page}
     defaults: { _controller: ChecklistiChecklistBundle:Static:index, page: index }

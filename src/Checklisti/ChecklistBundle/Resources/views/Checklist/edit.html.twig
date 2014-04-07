@@ -2,10 +2,13 @@
 
 {% block title %}Welcome{% endblock %}
 
-{% block content %}
-    <h1 class="title">checklist new</h1>
-
-    <p>Your stuff goes here</p>
-
-    {{ form(form) }}
+{% block main %}
+    <div class="main">
+        <div class="row">
+            <div class="span6">
+                <h2 id="">MAKE A NEW CHECKLIST</h2>
+                {{ form(form) }}
+            </div><!--end of span6-->
+        </div> <!-- end of row -->
+    </div>  
 {% endblock %}
