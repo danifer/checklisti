@@ -7,7 +7,7 @@
         <div class="row">
             <div class="span6">
                 <h2 id="">MAKE A NEW CHECKLIST</h2>
-                {{ form(form) }}
+                {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }} <!--TODO: Remove novalidate tag -->
             </div><!--end of span6-->
         </div> <!-- end of row -->
     </div>  

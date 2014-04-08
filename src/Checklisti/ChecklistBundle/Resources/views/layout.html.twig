@@ -16,9 +16,9 @@
 
 {% block javascripts_head %}
     <script src="{{ asset('/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
-    <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js') }}"></script>
-    <script src="{{ asset('/js/bootstrap-tooltip.js') }}"></script>
-    <script src="{{ asset('/js/bootstrap-popover.js') }}"></script>
+    <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}"></script>
+    <script src="{{ asset('/js/vendor/bootstrap-tooltip.js') }}"></script>
+    <script src="{{ asset('/js/vendor/bootstrap-popover.js') }}"></script>
 
     <script>  
         $(document).ready(function () {
@@ -61,7 +61,12 @@
                 </a>
                 <a class="brand" href="{{ path('_home') }}">{{domain}}</a>
                 <div class="nav-collapse collapse">
-                    <ul class="nav" id="top-nav"></ul>
+                    <ul class="nav" id="top-nav">
+                        {% if app.environment == 'dev' %}
+                            <li class=""><a href="{{ path('_checklist') }}">List</a></li>
+                            <li class=""><a href="{{ path('_checklist_new') }}">New</a></li>
+                        {% endif %}
+                    </ul>
                     <form class="navbar-form pull-right"></form>
                 </div><!--/.nav-collapse -->
             </div><!--end of container -->
@@ -109,21 +114,7 @@
     <p class="onlyprint">Copyright &copy; {{ sitename }} {{ "now"|date("Y") }}</p>
     <div class="container">
         <div class="row">
-            <div class="span6" id="buttons">
-                <a id="bibliography" data-toggle="collapse" data-target="#demo">Bibliography</a>
-                <div id="demo" class="collapse">
-                    <p>
-                        <a href="http://guidelines.usability.gov/">U.S. Dept. of Health and Human Services. The Research-Based Web Design & Usability Guidelines, 2006.</a>
-                        <br><br>
-                        <a href="http://www.nngroup.com/articles">Nielsen Norman Group, Articles</a>
-                        <br><br>
-                        <a href="http://www.w3.org/TR/WAI-WEBCONTENT/full-checklist">Checklist of Checkpoints for Web Content Accessibility Guidelines 1.0</a>
-                        <br><br>
-                        <a href="http://repository.jisc.ac.uk/79/1/jisc-hcidesign-study-final.pdf">The Joint Information Systems Committee, HCI Design Foundation Study, 2004</a>
-                    </p>
-                </div>
-            </div>
-
+            <div class="span6" id="buttons"></div>
             <div class="span6" id="buttons2">
                 <button id="reload" class="btn btn-info" title="Reset all the checkboxes" onclick="window.location.reload(true)"><i class="icon-repeat icon-white"></i> Reload</button>
                 <button id="printbutton" class="btn btn-info" onclick="printpage()"><i class="icon-print icon-white"></i> Print</button>
@@ -165,14 +156,6 @@
     <script src="{{ asset('/js/vendor/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/js/plugins.js') }}"></script>
     <script src="{{ asset('/js/main.js') }}"></script>
-    
-    <script>
-         $('#top-nav').onePageNav({
-             currentClass: 'active',
-             changeHash: true,
-             scrollSpeed: 1200
-        });
-    </script>
 
     <script>
         $('[type="checkbox"]').click(function(){
