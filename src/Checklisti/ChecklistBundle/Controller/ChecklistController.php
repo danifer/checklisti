@@ -31,7 +31,7 @@ class ChecklistController extends Controller
         $form = $this->createFormBuilder($checklist)
             ->add('title', 'text', array('label' => 'My Title'))
             ->add('description', 'textarea', array('required' => false, 'label' => 'My Description'))
-            ->add('save', 'submit')
+            ->add('save', 'submit', array('attr' => array('class'=>'btn')))
             ->getForm();
 
         $form->handleRequest($request);
